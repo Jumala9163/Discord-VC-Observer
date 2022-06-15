@@ -21,6 +21,7 @@ client.on("ready", () => {
 client.on('voiceStateUpdate', (oldState, newState) => {
     const old_chid = oldState.channelId;
     const new_chid = newState.channelId;
+    if (oldState.channel != newState.channel) {
         if (new_chid == process.env.IGNORE_CH_1 || new_chid == process.env.IGNORE_CH_2 || new_chid == process.env.IGNORE_CH_3 || new_chid == process.env.IGNORE_CH_4 || new_chid == process.env.IGNORE_CH_5) {
 
             return console.log(`入室通知対象外のVCチャンネル[ ${newState.channelId} ]`);
@@ -43,6 +44,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
             }
         }
+    }
 });
 
 //ログイン
