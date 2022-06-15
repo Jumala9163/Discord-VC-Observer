@@ -4,6 +4,10 @@
 ・node.js `(16.15.1)`
 <br>
 ・discord.js `(13.8.0)`
+<br>
+・dotenv `(16.0.1)`
+<br>
+<br>
 
 
 ## How to use
@@ -19,6 +23,16 @@ git clone https://github.com/Jumala9163/Discord-VC-Observer-Bot.git
 クローンしたらクローンした先のフォルダーに入っている`.env.sample`をコピーして`.env`に名前を変更してください
 <br>
 変更後テキストエディタで`.env`の中身を設定してください
+
+<br>
+
+`.env`の中身について
+```
+DISCORD_BOT_TOKEN = "ここにBOTのトークン"
+DISCORD_BOT_STATUS_MESSAGE = "設定したいステータスメッセージ"
+SEND_LOG_CH = "入退室の通知を出したいチャンネルのID"
+IGNORE_CH_1～5 = "反応させたくないVCチャンネルのID"    　
+```
 
 <br>
 
