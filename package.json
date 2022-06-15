@@ -1,0 +1,25 @@
+{
+    "name": "Discord-VC-Observer-Bot",
+    "version": "1.0.0",
+    "description": "DiscordVCチャンネルの入退室を特定のテキストチャンネルに送信してくれるBOT",
+    "license": "MIT",
+    "author": "Jumala9163 (https://github.com/jumala9163)",
+    "bugs": {
+        "url": "https://github.com/Jumala9163/Discord-VC-Observer-Bot/issues"
+    },
+    "engines": {
+        "node": "16.x"
+    },
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "discord.js": "13.8.0",
+        "dotenv": "16.0.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jumala9163/Discord-VC-Observer-Bot.git"
+    }
+}
