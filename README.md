@@ -1,9 +1,9 @@
 # Discord-VC-Observer-Bot
 
 ## Requirement
-・node.js `(16.15.1)`
+・node.js `(16.16.0)`
 <br>
-・discord.js `(13.8.0)`
+・discord.js `(14.2.0)`
 <br>
 ・dotenv `(16.0.1)`
 <br>

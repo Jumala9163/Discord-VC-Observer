@@ -1,6 +1,6 @@
 //必要な物を召喚
-const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES] });
+const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
 //.envを使えるようにする
 require('dotenv').config();
@@ -14,14 +14,14 @@ if (process.env.DISCORD_BOT_TOKEN == undefined) {
 //ログイン完了通知
 client.on("ready", () => {
     console.log(`ログイン完了: ${client.user.tag}`);
-    client.user.setActivity(process.env.DISCORD_BOT_STATUS_MESSAGE, { type: 'WATCHING' })
+    client.user.setActivity(process.env.DISCORD_BOT_STATUS_MESSAGE, { type: ActivityType.Watching });
 });
 
 //着火
 client.on('voiceStateUpdate', (oldState, newState) => {
     const old_chid = oldState.channelId;
     const new_chid = newState.channelId;
-    if (oldState.channel != newState.channel) {
+    if (oldState.channel !== newState.channel) {
         if (new_chid == process.env.IGNORE_CH_1 || new_chid == process.env.IGNORE_CH_2 || new_chid == process.env.IGNORE_CH_3 || new_chid == process.env.IGNORE_CH_4 || new_chid == process.env.IGNORE_CH_5) {
 
             return console.log(`入室通知対象外のVCチャンネル[ ${newState.channelId} ]`);
