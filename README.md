@@ -1,5 +1,13 @@
 # Discord-VC-Observer-Bot
 
+## About
+
+このBOTはDiscordのVCの入退室を監視して指定のチャンネルに通知するBOTです
+</br>
+また、指定したVCの入退室検知を無効にすることもできます
+</br>
+使用方法についてはこの下を読んでください
+
 ## Requirement
 
 ・node.js `(^16.9.0)`
@@ -31,8 +39,8 @@ git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
 ```json
 "DISCORD_BOT_TOKEN": "ここにBOTのトークン",
 "DISCORD_BOT_STATUS_MESSAGE": "ここにBotのステータスメッセージ",
-"IGNORED_CHANNELS_ID": [ここに無視するチャンネルのid ex)[ "123456", "654321"]],
-"SEND_LOG_CHANNEL_ID": "ここに入退室通知をするチャンネルのid"  　
+"IGNORED_CHANNELS_ID": ["ここに無視するチャンネルのID", "複数追加はこのようにしてください"],
+"SEND_LOG_CHANNEL_ID": "ここに入退室通知をするチャンネルのid"
 ```
 
 </br>
