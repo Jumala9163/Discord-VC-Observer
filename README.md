@@ -20,7 +20,7 @@
 
 </br>
 
-まずはこのリポジトリを任意のローカルの場所にクローンしてください
+まずはこのリポジトリを任意の場所にクローンしてください
 
 ```bash
 git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
@@ -28,13 +28,13 @@ git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
 
 </br>
 
-クローンしたらクローンした先のフォルダーに入っている`.env.sample`をコピーして`.env`に名前を変更してください
+クローンしたらクローンした先のフォルダーに入っている`config.json.example`をコピーして`config.json`に名前を変更してください
 </br>
-変更後テキストエディタで`.env`の中身を設定してください
+変更後テキストエディタで`config.json`の中身を設定してください
 
 </br>
 
-`.env`の中身について
+`config.json`の中身について
 
 ```json
 "DISCORD_BOT_TOKEN": "ここにBOTのトークン",
@@ -53,7 +53,7 @@ npm install
 
 </br>
 
-完了したら実行すれば動き出すはずです
+完了したら下記のコマンドを実行すれば動き出すはずです
 
 ```bash
 npm start
