@@ -88,3 +88,6 @@ typings/
 
 # package-lock file
 package-lock.json
+
+# Cutom
+config.json

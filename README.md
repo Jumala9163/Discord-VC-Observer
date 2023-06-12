@@ -1,54 +1,59 @@
 # Discord-VC-Observer-Bot
 
 ## Requirement
-・node.js `(16.16.0)`
-<br>
-・discord.js `(14.2.0)`
-<br>
-・dotenv `(16.0.1)`
-<br>
-<br>
 
+・node.js `(^16.9.0)`
+</br>
+・discord.js `(14.11.0)`
+</br>
+</br>
 
 ## How to use
 
-<br>
+</br>
 
 まずはこのリポジトリを任意のローカルの場所にクローンしてください
-``` 
-git clone https://github.com/Jumala9163/Discord-VC-Observer-Bot.git
+
+```bash
+git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
 ```
-<br>
+
+</br>
 
 クローンしたらクローンした先のフォルダーに入っている`.env.sample`をコピーして`.env`に名前を変更してください
-<br>
+</br>
 変更後テキストエディタで`.env`の中身を設定してください
 
-<br>
+</br>
 
 `.env`の中身について
-```
-DISCORD_BOT_TOKEN = "ここにBOTのトークン"
-DISCORD_BOT_STATUS_MESSAGE = "設定したいステータスメッセージ"
-SEND_LOG_CH = "入退室の通知を出したいチャンネルのID"
-IGNORE_CH_1～5 = "反応させたくないVCチャンネルのID"    　
+
+```json
+"DISCORD_BOT_TOKEN": "ここにBOTのトークン",
+"DISCORD_BOT_STATUS_MESSAGE": "ここにBotのステータスメッセージ",
+"IGNORED_CHANNELS_ID": [ここに無視するチャンネルのid ex)[ "123456", "654321"]],
+"SEND_LOG_CHANNEL_ID": "ここに入退室通知をするチャンネルのid"  　
 ```
 
-<br>
+</br>
 
 次にパッケージのインストールをしてください
-```
+
+```bash
 npm install
 ```
-<br>
+
+</br>
 
 完了したら実行すれば動き出すはずです
-```
+
+```bash
 npm start
 ```
 
-<br><br>
+</br></br>
 
-##### ©2022 [Jumala9163](https://github.com/Jumala9163) & [Kome-Lab](https://github.com/Kome-Lab)
+©2022 [Jumala9163](https://github.com/Jumala9163) & [Kome-Lab](https://github.com/Kome-Lab)
+
 [Released under the MIT license](
 https://github.com/Jumala9163/Discord-VC-Observer-Bot/blob/main/LICENSE.md)

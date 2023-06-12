@@ -1,51 +1,48 @@
-//必要な物を召喚
+// 必要な物を召喚
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
-//.envを使えるようにする
-require('dotenv').config();
+// jsonをロード
+var config = require('./config.json');
 
-//TOKEN確認
-if (process.env.DISCORD_BOT_TOKEN == undefined) {
+// TOKEN確認
+if (config.DISCORD_BOT_TOKEN == undefined) {
     console.error("TOKENが設定されていません。");
     process.exit(0);
 }
 
-//ログイン完了通知
+// ログイン完了通知
 client.on("ready", () => {
     console.log(`ログイン完了: ${client.user.tag}`);
-    client.user.setActivity(process.env.DISCORD_BOT_STATUS_MESSAGE, { type: ActivityType.Watching });
+    client.user.setActivity(config.DISCORD_BOT_STATUS_MESSAGE, { type: ActivityType.Watching });
 });
 
-//着火
+// 着火
 client.on('voiceStateUpdate', (oldState, newState) => {
     const old_chid = oldState.channelId;
     const new_chid = newState.channelId;
-    if (oldState.channel !== newState.channel) {
-        if (new_chid == process.env.IGNORE_CH_1 || new_chid == process.env.IGNORE_CH_2 || new_chid == process.env.IGNORE_CH_3 || new_chid == process.env.IGNORE_CH_4 || new_chid == process.env.IGNORE_CH_5) {
+    const ignoredChannels = config.IGNORED_CHANNELS_ID;
 
-            return console.log(`入室通知対象外のVCチャンネル[ ${newState.channelId} ]`);
+    if (ignoredChannels.includes(new_chid)) {
+        console.log(`入室通知対象外のVCチャンネル[ ${new_chid} ]`);
+        return;
+    }
 
-        } else {
-            if (newState.channel !== null) {
+    if (ignoredChannels.includes(old_chid)) {
+        console.log(`退出通知対象外のVCチャンネル[ ${old_chid} ]`);
+        return;
+    }
 
-                return client.channels.cache.get(process.env.SEND_LOG_CH).send(`${newState.member.user.tag}が<#${newState.channelId}>に入室しました。\n\nようこそ! :laughing:`);
-
-            }
+    if (old_chid !== new_chid) {
+        if (newState.channel !== null) {
+            client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${newState.member.user.tag}が<#${new_chid}>に入室しました。\n\nようこそ! :laughing:`);
         }
-        if (old_chid == process.env.IGNORE_CH_1 || old_chid == process.env.IGNORE_CH_2 || old_chid == process.env.IGNORE_CH_3 || old_chid == process.env.IGNORE_CH_4 || old_chid == process.env.IGNORE_CH_5) {
 
-            return console.log(`退出通知対象外のVCチャンネル[ ${oldState.channelId} ]`);
-
-        } else {
-            if (oldState.channel !== null) {
-
-                return client.channels.cache.get(process.env.SEND_LOG_CH).send(`${oldState.member.user.tag}が<#${oldState.channelId}>を退出しました。\n\n乙～～ :wave:`);
-
-            }
+        if (oldState.channel !== null) {
+            client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${oldState.member.user.tag}が<#${old_chid}>を退出しました。\n\n乙～～ :wave:`);
         }
     }
 });
 
-//ログイン
-client.login(process.env.DISCORD_BOT_TOKEN);
+// ログイン
+client.login(config.DISCORD_BOT_TOKEN);
