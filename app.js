@@ -20,26 +20,60 @@ client.on("ready", () => {
 // 着火
 client.on('voiceStateUpdate', (oldState, newState) => {
     const old_chid = oldState.channelId;
+    const old_uid = oldState.member.user.id;
     const new_chid = newState.channelId;
+    const new_uid = newState.member.user.id;
+
     const ignoredChannels = config.IGNORED_CHANNELS_ID;
+    const ignoredUsers = config.IGNORED_USER_IDS;
+    
+    const joinMessage = config.CHANNEL_JOIN_MESSAGE;
+    const leaveMessage = config.CHANNEL_LEAVE_MESSAGE;
 
-    if (ignoredChannels.includes(new_chid)) {
-        console.log(`入室通知対象外のVCチャンネル[ ${new_chid} ]`);
-        return;
+    if (newState.channel !== null && oldState.channel !== null) {
+        if (ignoredUsers.includes(new_uid)) {
+            console.log(`移動通知対象外のユーザー[ ${new_uid} ]`);
+            return;
+        }
+        else if (ignoredChannels.includes(new_chid)) {
+            console.log(`移動通知対象外のVCチャンネル[ ${new_chid} ]`);
+            return;
+        }
+        else {
+            client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${newState.member.user.tag}が別のチャンネルから\n<#${new_chid}>に入室しました。\n\n ${joinMessage}`);
+            return;
+        }
     }
 
-    if (ignoredChannels.includes(old_chid)) {
-        console.log(`退出通知対象外のVCチャンネル[ ${old_chid} ]`);
-        return;
-    }
-
-    if (old_chid !== new_chid) {
+    if (old_chid !== new_chid ) {
         if (newState.channel !== null) {
-            client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${newState.member.user.tag}が<#${new_chid}>に入室しました。\n\nようこそ! :laughing:`);
+            if (ignoredUsers.includes(new_uid)) {
+                console.log(`入室通知対象外のユーザー[ ${new_uid} ]`);
+                return;
+            }
+            else if (ignoredChannels.includes(new_chid)) {
+                console.log(`入室通知対象外のVCチャンネル[ ${new_chid} ]`);
+                return;
+            }
+            else {
+                client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${newState.member.user.tag}が<#${new_chid}>に入室しました。\n\n ${joinMessage}`);
+                return;
+            }
         }
 
         if (oldState.channel !== null) {
-            client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${oldState.member.user.tag}が<#${old_chid}>を退出しました。\n\n乙～～ :wave:`);
+            if (ignoredUsers.includes(old_uid)) {
+                console.log(`退出通知対象外のユーザー[ ${old_uid} ]`);
+                return;
+            }
+            else     if (ignoredChannels.includes(old_chid)) {
+                console.log(`退出通知対象外のVCチャンネル[ ${old_chid} ]`);
+                return;
+            }
+            else{
+                client.channels.cache.get(config.SEND_LOG_CHANNEL_ID).send(`${oldState.member.user.tag}が<#${old_chid}>を退出しました。\n\n ${leaveMessage}`);
+                return;
+            }
         }
     }
 });
