@@ -4,15 +4,17 @@
 
 このBOTはDiscordのVCの入退室を監視して指定のチャンネルに通知するBOTです
 </br>
-また、指定したVCの入退室検知を無効にすることもできます
+指定したVCへの入退室通知や指定したユーザーのVCへの入退室通知を無効にすることもできます
 </br>
 使用方法についてはこの下を読んでください
 
 ## Requirement
 
-・node.js `(^16.9.0)`
+・node.js `(^20.x.x)`
 </br>
-・discord.js `(14.11.0)`
+・discord.js `(14.16.1)`
+</br>
+・date-utils `(^1.2.21)`
 </br>
 </br>
 
@@ -23,7 +25,7 @@
 まずはこのリポジトリを任意の場所にクローンしてください
 
 ```bash
-git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
+git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot
 ```
 
 </br>
@@ -37,10 +39,13 @@ git clone https://github.com/Kome-Lab/Discord-VC-Observer-Bot.git
 `config.json`の中身について
 
 ```json
-"DISCORD_BOT_TOKEN": "ここにBOTのトークン",
-"DISCORD_BOT_STATUS_MESSAGE": "ここにBotのステータスメッセージ",
-"IGNORED_CHANNELS_ID": ["ここに無視するチャンネルのID", "複数追加はこのようにしてください"],
-"SEND_LOG_CHANNEL_ID": "ここに入退室通知をするチャンネルのid"
+"DISCORD_BOT_TOKEN": "BOTトークン",
+"DISCORD_BOT_STATUS_MESSAGE": "Botステータスメッセージ",
+"CHANNEL_JOIN_MESSAGE": "入室通知の時に送信する一言メッセージ(例:ようこそ！！)",
+"CHANNEL_LEAVE_MESSAGE": "退室通知の時に送信する一言メッセージ(例:さようなら～)",
+"IGNORED_CHANNELS_ID": ["無視するチャンネルのID", "複数追加はこのようにしてください"],
+"IGNORED_USER_IDS": ["無視するユーザーのID","複数追加はこのようにしてください"],
+"SEND_LOG_CHANNEL_ID": "入退室通知をするチャンネルのid"
 ```
 
 </br>
@@ -61,7 +66,7 @@ npm start
 
 </br></br>
 
-©2022 [Jumala9163](https://github.com/Jumala9163) & [Kome-Lab](https://github.com/Kome-Lab)
+©2022-2024 [Jumala9163](https://github.com/Jumala9163) & [Kome-Lab](https://github.com/Kome-Lab)
 
 [Released under the MIT license](
 https://github.com/Jumala9163/Discord-VC-Observer-Bot/blob/main/LICENSE.md)
