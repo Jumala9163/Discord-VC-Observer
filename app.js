@@ -48,6 +48,10 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     const notify_ch = config.SEND_LOG_CHANNEL_ID;
 
 
+    if (oldState.channelId === newState.channelId) {
+        return;
+    }
+
     if (newState.channel !== null && oldState.channel === null) {
         if (ignoredUsers.includes(new_uid)) {
             console.log(`${getnow()} | 入室通知対象外のユーザー [サーバー名：${new_guildName} ユーザー名：${new_displayName} (${new_uid})]`);
